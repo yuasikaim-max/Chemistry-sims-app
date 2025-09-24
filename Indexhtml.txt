@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Chemistry Simulation Prototype - Mobile Friendly</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 15px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus {
+      border-color: #007bff;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #output {
+      margin-top: 25px;
+      text-align: center;
+    }
+    #output h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    #output p {
+      font-size: 1.1rem;
+    }
+    #output img {
+      max-width: 100%;
+      margin-top: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Chemistry Simulation Prototype</h1>
+  <p>Type a chemistry topic (e.g., "nitrogen cycle", "sulfur formation", "water cycle") and tap "Generate Simulation".</p>
+
+  <input type="text" id="topicInput" placeholder="Enter topic here" />
+  <button onclick="generateSimulation()">Generate Simulation</button>
+
+  <div id="output"></div>
+
+  <script>
+    const simulations = {
+      "nitrogen cycle": {
+        text: "The nitrogen cycle is a natural process where nitrogen moves between the atmosphere, soil, and living organisms, essential for life.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Nitrogen_Cycle.svg/600px-Nitrogen_Cycle.svg.png"
+      },
+      "sulfur formation": {
+        text: "Sulfur is formed through volcanic activity and decay of organic matter, and it plays a crucial role in biological and geological processes.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/5/56/Sulfur_crystals.jpg"
+      },
+      "water cycle": {
+        text: "The water cycle describes how water evaporates, condenses in clouds, and returns to Earth as precipitation, powering ecosystems worldwide.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Water_cycle_diagram.svg/600px-Water_cycle_diagram.svg.png"
+      },
+      "metals and alloys": {
+        text: "Metals are elements with high conductivity and malleability; alloys are mixtures of metals designed for specific properties.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Alloy_metals.png/600px-Alloy_metals.png"
+      }
+    };
+
+    function generateSimulation() {
+      const topic = document.getElementById('topicInput').value.trim().toLowerCase();
+      const outputDiv = document.getElementById('output');
+
+      if (simulations[topic]) {
+        outputDiv.innerHTML = `
+          <h2>${topic.charAt(0).toUpperCase() + topic.slice(1)}</h2>
+          <p>${simulations[topic].text}</p>
+          <img src="${simulations[topic].image}" alt="${topic} illustration" />
+        `;
+      } else if (topic === "") {
+        outputDiv.innerHTML = "<p>Please enter a topic to generate simulation.</p>";
+      } else {
+        outputDiv.innerHTML = "<p>Simulation not available for this topic yet. Try 'nitrogen cycle', 'sulfur formation', 'water cycle', or 'metals and alloys'.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
